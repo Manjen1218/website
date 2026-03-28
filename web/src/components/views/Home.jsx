@@ -32,7 +32,7 @@ export default function Home({ navigate }) {
   const tagline = useTypewriter('Hsinchu, Taiwan · EE Cyber · NTU')
   const tickerRef = useRef(null)
 
-  const pauseTicker  = () => { if (tickerRef.current) tickerRef.current.style.animationPlayState = 'paused' }
+  const pauseTicker = () => { if (tickerRef.current) tickerRef.current.style.animationPlayState = 'paused' }
   const resumeTicker = () => { if (tickerRef.current) tickerRef.current.style.animationPlayState = 'running' }
 
   return (
@@ -49,8 +49,8 @@ export default function Home({ navigate }) {
           </h1>
 
           <p className="hero-sub">
-            <strong>CS graduate from NYCU.</strong> Now diving into web security at{' '}
-            <strong>NTU EE</strong>.<br />
+            <strong>CS graduate from NYCU.</strong> Now diving into{' '}
+            <strong>NTU EE Cyber Security</strong>.<br />
             Cinephile by night, engineer by day — chasing the edge between{' '}
             <strong>systems and security</strong>.
           </p>
