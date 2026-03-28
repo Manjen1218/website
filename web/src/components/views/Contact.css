@@ -1,0 +1,50 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 860px;
+}
+
+.contact-desc {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 2.1;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.clink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  padding: 1rem 1.4rem;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  transition: all 0.22s;
+  background: var(--card);
+}
+.clink:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateX(6px);
+}
+
+.clink-icon {
+  width: 22px;
+  text-align: center;
+  font-style: normal;
+  flex-shrink: 0;
+}
+
+@media (max-width: 800px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+}

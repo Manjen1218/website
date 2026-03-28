@@ -1,0 +1,39 @@
+.goal-card {
+  max-width: 720px;
+  border: 1px solid var(--border);
+  padding: 3rem;
+  background: var(--card);
+  position: relative;
+  transition: background 0.4s;
+}
+.goal-card::before {
+  content: '\201C';
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 8rem;
+  color: var(--gold);
+  opacity: 0.15;
+  position: absolute;
+  top: -1rem; left: 2rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.goal-text {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  line-height: 1.7;
+  color: var(--text);
+  position: relative;
+}
+.goal-text em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.goal-sig {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}

@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Man-Chen Chao</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <style>
     /* ── THEME TOKENS ── */
     :root[data-theme="dark"] {
-      --bg:       #080808;
-      --surface:  #0f0f0f;
-      --card:     #141414;
-      --border:   #222;
-      --text:     #d8d0c4;
-      --muted:    #5a5248;
-      --gold:     #c9a84c;
-      --gold-dim: rgba(201,168,76,0.15);
-      --shadow:   rgba(0,0,0,.6);
-      --nav-bg:   rgba(8,8,8,.92);
-      --scanline: rgba(0,0,0,.07);
+      --bg: #080808;
+      --surface: #0f0f0f;
+      --card: #141414;
+      --border: #222;
+      --text: #d8d0c4;
+      --muted: #5a5248;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201, 168, 76, 0.15);
+      --shadow: rgba(0, 0, 0, .6);
+      --nav-bg: rgba(8, 8, 8, .92);
+      --scanline: rgba(0, 0, 0, .07);
       --grain-op: 0.55;
     }
+
     :root[data-theme="light"] {
-      --bg:       #f5f0e8;
-      --surface:  #ede8dc;
-      --card:     #e8e2d4;
-      --border:   #cfc8b8;
-      --text:     #1a1714;
-      --muted:    #7a6e5e;
-      --gold:     #a07828;
-      --gold-dim: rgba(160,120,40,0.12);
-      --shadow:   rgba(0,0,0,.15);
-      --nav-bg:   rgba(245,240,232,.92);
-      --scanline: rgba(0,0,0,.03);
+      --bg: #f5f0e8;
+      --surface: #ede8dc;
+      --card: #e8e2d4;
+      --border: #cfc8b8;
+      --text: #1a1714;
+      --muted: #7a6e5e;
+      --gold: #a07828;
+      --gold-dim: rgba(160, 120, 40, 0.12);
+      --shadow: rgba(0, 0, 0, .15);
+      --nav-bg: rgba(245, 240, 232, .92);
+      --scanline: rgba(0, 0, 0, .03);
       --grain-op: 0.25;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
 
     body {
       background: var(--bg);
@@ -51,593 +64,1160 @@
 
     /* grain */
     body::after {
-      content:''; position:fixed; inset:0; pointer-events:none; z-index:1000;
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
       opacity: var(--grain-op);
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
     /* ── CURSOR ── */
-    #cur       { position:fixed; width:10px; height:10px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:background .3s; }
-    #cur-trail { position:fixed; width:32px; height:32px; border:1px solid var(--gold); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:left .2s ease, top .2s ease, transform .2s ease, opacity .2s, border-color .3s; opacity:.4; }
+    #cur {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: background .3s;
+    }
+
+    #cur-trail {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: left .2s ease, top .2s ease, transform .2s ease, opacity .2s, border-color .3s;
+      opacity: .4;
+    }
 
     /* ── NAV ── */
     nav {
-      position:fixed; top:0; left:0; right:0; z-index:500;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:1.2rem 4rem;
-      border-bottom:1px solid transparent;
-      transition:background .4s, border-color .4s;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      border-bottom: 1px solid transparent;
+      transition: background .4s, border-color .4s;
     }
-    nav.scrolled { background:var(--nav-bg); backdrop-filter:blur(16px); border-color:var(--border); }
-    .nav-sig { font-family:'DM Serif Display', Georgia, serif; font-size:1.05rem; color:var(--gold); text-decoration:none; }
 
-    .nav-links { display:flex; gap:0; list-style:none; align-items:center; }
+    nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-color: var(--border);
+    }
+
+    .nav-sig {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+      align-items: center;
+    }
+
     .nav-links li a {
-      font-size:.68rem; color:var(--muted); text-decoration:none;
-      letter-spacing:.18em; text-transform:uppercase; transition:color .2s;
-      padding:.4rem .9rem; position:relative;
+      font-size: .68rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: color .2s;
+      padding: .4rem .9rem;
+      position: relative;
     }
+
     .nav-links li a::after {
-      content:''; position:absolute; bottom:-2px; left:.9rem; right:.9rem;
-      height:1px; background:var(--gold); transform:scaleX(0); transition:transform .25s;
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: .9rem;
+      right: .9rem;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform .25s;
     }
+
     .nav-links li a.active,
-    .nav-links li a:hover { color:var(--gold); }
+    .nav-links li a:hover {
+      color: var(--gold);
+    }
+
     .nav-links li a.active::after,
-    .nav-links li a:hover::after { transform:scaleX(1); }
+    .nav-links li a:hover::after {
+      transform: scaleX(1);
+    }
 
     /* Theme toggle */
     .theme-btn {
-      background:none; border:1px solid var(--border); cursor:pointer;
-      padding:.4rem .75rem; margin-left:1.5rem;
-      font-family:'DM Mono', monospace; font-size:.68rem; letter-spacing:.1em;
-      color:var(--muted); transition:all .2s; display:flex; align-items:center; gap:.4rem;
+      background: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      padding: .4rem .75rem;
+      margin-left: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
     }
-    .theme-btn:hover { border-color:var(--gold); color:var(--gold); }
-    .theme-icon { font-size:.9rem; transition:transform .4s; }
-    [data-theme="light"] .theme-icon { transform:rotate(180deg); }
+
+    .theme-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .theme-icon {
+      font-size: .9rem;
+      transition: transform .4s;
+    }
+
+    [data-theme="light"] .theme-icon {
+      transform: rotate(180deg);
+    }
 
     /* ── PAGE SHELL ── */
-    #app { padding-top: 64px; }
+    #app {
+      padding-top: 64px;
+    }
 
     /* ── VIEW TRANSITIONS ── */
     .view {
-      position:absolute; top:0; left:0; width:100%;
-      opacity:0; transform:translateY(18px);
-      transition:opacity .45s ease, transform .45s ease;
-      pointer-events:none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .45s ease, transform .45s ease;
+      pointer-events: none;
     }
+
     .view.active {
-      position:relative;
-      opacity:1; transform:translateY(0);
-      pointer-events:auto;
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
+
     .view.leave {
-      opacity:0; transform:translateY(-14px);
+      opacity: 0;
+      transform: translateY(-14px);
     }
 
     /* ── SHARED SECTION ── */
-    .page { min-height: calc(100vh - 64px); padding:5rem 4rem; }
-    .sec-eyebrow { font-size:.65rem; color:var(--gold); letter-spacing:.28em; text-transform:uppercase; margin-bottom:.8rem; }
-    .sec-title { font-family:'DM Serif Display', Georgia, serif; font-size:clamp(2.4rem,5vw,4rem); line-height:1; letter-spacing:-.01em; margin-bottom:3rem; }
-    .sec-title em { font-style:italic; color:var(--gold); }
+    .page {
+      min-height: calc(100vh - 64px);
+      padding: 5rem 4rem;
+    }
+
+    .sec-eyebrow {
+      font-size: .65rem;
+      color: var(--gold);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+
+    .sec-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -.01em;
+      margin-bottom: 3rem;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
 
     /* ── HOME ── */
     .home-wrap {
-      min-height:calc(100vh - 64px); display:flex; flex-direction:column;
-      justify-content:flex-end; padding:0 4rem 5rem; position:relative; overflow:hidden;
+      min-height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 5rem;
+      position: relative;
+      overflow: hidden;
     }
+
     .hero-reel {
-      position:absolute; inset:0; z-index:0;
-      background:radial-gradient(ellipse 80% 60% at 100% 40%, rgba(201,168,76,0.07) 0%, transparent 65%),
-                 radial-gradient(ellipse 60% 80% at 10% 70%, rgba(201,168,76,0.04) 0%, transparent 60%);
-      transition:background .4s;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 100% 40%, rgba(201, 168, 76, 0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 10% 70%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
+      transition: background .4s;
     }
+
     [data-theme="light"] .hero-reel {
-      background:radial-gradient(ellipse 80% 60% at 100% 40%, rgba(160,120,40,0.06) 0%, transparent 65%),
-                 radial-gradient(ellipse 60% 80% at 10% 70%, rgba(160,120,40,0.04) 0%, transparent 60%);
+      background: radial-gradient(ellipse 80% 60% at 100% 40%, rgba(160, 120, 40, 0.06) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 10% 70%, rgba(160, 120, 40, 0.04) 0%, transparent 60%);
     }
+
     .hero-reel::after {
-      content:''; position:absolute; inset:0;
-      background:repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
-      animation:scanlines 10s linear infinite;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, var(--scanline) 2px, var(--scanline) 4px);
+      animation: scanlines 10s linear infinite;
     }
-    @keyframes scanlines { from{background-position:0 0} to{background-position:0 100px} }
 
-    .hero-content { position:relative; z-index:1; }
-    .hero-pre { font-size:.7rem; color:var(--gold); letter-spacing:.3em; text-transform:uppercase; margin-bottom:1.2rem; min-height:1.2em; }
-    .hero-name { font-family:'DM Serif Display', Georgia, serif; font-style:italic; font-size:clamp(3.5rem,9vw,8.5rem); line-height:.92; letter-spacing:-.02em; margin-bottom:1rem; }
-    .hero-name em { font-style:normal; color:var(--gold); }
-    .hero-sub { font-size:.82rem; color:var(--muted); line-height:1.9; max-width:480px; margin-bottom:2.8rem; }
-    .hero-sub strong { color:var(--text); }
-    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+    @keyframes scanlines {
+      from {
+        background-position: 0 0
+      }
 
-    .btn { font-family:'DM Mono', monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; padding:.8rem 2rem; text-decoration:none; border:1px solid; cursor:pointer; transition:all .25s; background:none; }
-    .btn-gold { background:var(--gold); color:var(--bg); border-color:var(--gold); }
-    .btn-gold:hover { background:transparent; color:var(--gold); }
-    .btn-outline { color:var(--text); border-color:var(--border); }
-    .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+      to {
+        background-position: 0 100px
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pre {
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      min-height: 1.2em;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(3.5rem, 9vw, 8.5rem);
+      line-height: .92;
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 480px;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-sub strong {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .8rem 2rem;
+      text-decoration: none;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all .25s;
+      background: none;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    .btn-gold:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-outline {
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
 
     /* ticker */
-    .ticker-wrap { position:absolute; bottom:0; left:0; right:0; overflow:hidden; border-top:1px solid var(--border); padding:.55rem 0; z-index:1; }
-    .ticker { display:flex; gap:4rem; white-space:nowrap; animation:ticker 28s linear infinite; }
-    .ticker span { font-size:.62rem; color:var(--muted); letter-spacing:.2em; text-transform:uppercase; }
-    .ticker .dot { color:var(--gold); }
-    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ticker-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      padding: .55rem 0;
+      z-index: 1;
+    }
+
+    .ticker {
+      display: flex;
+      gap: 4rem;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker span {
+      font-size: .62rem;
+      color: var(--muted);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .ticker .dot {
+      color: var(--gold);
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
 
     /* ── ABOUT ── */
-    .about-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:5rem; align-items:start; }
-    .about-text p { font-size:.84rem; color:var(--muted); line-height:2.1; margin-bottom:1.2rem; }
-    .about-text p strong { color:var(--text); }
-    .about-text a { color:var(--gold); text-decoration:none; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
 
-    .film-strip { border:1px solid var(--border); padding:1.5rem; position:relative; overflow:hidden; background:var(--card); }
-    .film-holes { display:flex; height:18px; gap:10px; margin:-1.5rem -1.5rem 1.5rem; padding:0 8px; align-items:center; background:var(--surface); border-bottom:1px solid var(--border); }
-    .film-holes-bot { margin:1.5rem -1.5rem -1.5rem; border-bottom:none; border-top:1px solid var(--border); }
-    .film-hole { width:10px; height:10px; border-radius:2px; background:var(--border); flex-shrink:0; }
-    .film-item { display:flex; justify-content:space-between; align-items:baseline; padding:.6rem 0; border-bottom:1px solid var(--border); }
-    .film-item:last-child { border-bottom:none; }
-    .film-label { font-size:.68rem; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; }
-    .film-val { font-size:.82rem; color:var(--text); text-align:right; }
+    .about-text p {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 2.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+    }
+
+    .about-text a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .film-strip {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .film-holes {
+      display: flex;
+      height: 18px;
+      gap: 10px;
+      margin: -1.5rem -1.5rem 1.5rem;
+      padding: 0 8px;
+      align-items: center;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .film-holes-bot {
+      margin: 1.5rem -1.5rem -1.5rem;
+      border-bottom: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .film-hole {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .film-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .film-item:last-child {
+      border-bottom: none;
+    }
+
+    .film-label {
+      font-size: .68rem;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .film-val {
+      font-size: .82rem;
+      color: var(--text);
+      text-align: right;
+    }
 
     /* ── TIMELINE ── */
-    .timeline { max-width:780px; display:flex; flex-direction:column; gap:1.2rem; }
-    .tl-item { display:grid; grid-template-columns:110px 1fr; gap:2rem; padding:2rem; border:1px solid var(--border); background:var(--card); transition:border-color .25s, transform .25s; position:relative; overflow:hidden; }
-    .tl-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--gold); transform:scaleY(0); transform-origin:bottom; transition:transform .35s; }
-    .tl-item:hover { border-color:var(--gold); transform:translateX(6px); }
-    .tl-item:hover::before { transform:scaleY(1); }
-    .tl-year { font-size:.7rem; color:var(--gold); margin-top:.2rem; line-height:1.7; }
-    .tl-name { font-family:'DM Serif Display', Georgia, serif; font-size:1.2rem; margin-bottom:.3rem; }
-    .tl-sub { font-size:.75rem; color:var(--muted); line-height:1.8; }
-    .tl-badge { display:inline-block; margin-top:.8rem; padding:.28rem .75rem; font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; border:1px solid; }
-    .badge-current { border-color:var(--gold); color:var(--gold); animation:pulse 2.5s infinite; }
-    .badge-done { border-color:var(--border); color:var(--muted); }
-    .badge-exp { border-color:#3a6e50; color:#5aab7a; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .timeline {
+      max-width: 780px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 2rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: border-color .25s, transform .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .35s;
+    }
+
+    .tl-item:hover {
+      border-color: var(--gold);
+      transform: translateX(6px);
+    }
+
+    .tl-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .tl-year {
+      font-size: .7rem;
+      color: var(--gold);
+      margin-top: .2rem;
+      line-height: 1.7;
+    }
+
+    .tl-name {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.2rem;
+      margin-bottom: .3rem;
+    }
+
+    .tl-sub {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .tl-badge {
+      display: inline-block;
+      margin-top: .8rem;
+      padding: .28rem .75rem;
+      font-size: .6rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+
+    .badge-current {
+      border-color: var(--gold);
+      color: var(--gold);
+      animation: pulse 2.5s infinite;
+    }
+
+    .badge-done {
+      border-color: var(--border);
+      color: var(--muted);
+    }
+
+    .badge-exp {
+      border-color: #3a6e50;
+      color: #5aab7a;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
 
     /* ── SKILLS ── */
-    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.2rem; }
-    .skill-block { border:1px solid var(--border); padding:1.6rem; background:var(--card); transition:border-color .2s, background .4s; }
-    .skill-block:hover { border-color:var(--gold); }
-    .skill-block-title { font-size:.62rem; color:var(--gold); letter-spacing:.22em; text-transform:uppercase; margin-bottom:1.1rem; }
-    .chips { display:flex; flex-wrap:wrap; gap:.5rem; }
-    .chip { font-size:.7rem; padding:.3rem .8rem; border:1px solid var(--border); color:var(--muted); transition:all .18s; cursor:default; user-select:none; background:var(--bg); }
-    .chip:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
-    .chip.flash { background:var(--gold-dim); color:var(--gold); border-color:var(--gold); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .skill-block {
+      border: 1px solid var(--border);
+      padding: 1.6rem;
+      background: var(--card);
+      transition: border-color .2s, background .4s;
+    }
+
+    .skill-block:hover {
+      border-color: var(--gold);
+    }
+
+    .skill-block-title {
+      font-size: .62rem;
+      color: var(--gold);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .chip {
+      font-size: .7rem;
+      padding: .3rem .8rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all .18s;
+      cursor: default;
+      user-select: none;
+      background: var(--bg);
+    }
+
+    .chip:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .chip.flash {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
 
     /* ── GOAL ── */
-    .goal-card { max-width:720px; border:1px solid var(--border); padding:3rem; background:var(--card); position:relative; }
-    .goal-card::before { content:'\201C'; font-family:'DM Serif Display',Georgia,serif; font-size:8rem; color:var(--gold); opacity:.15; position:absolute; top:-1rem; left:2rem; line-height:1; }
-    .goal-text { font-family:'DM Serif Display',Georgia,serif; font-style:italic; font-size:clamp(1.2rem,2.5vw,1.6rem); line-height:1.7; color:var(--text); }
-    .goal-sig { margin-top:1.5rem; font-size:.7rem; color:var(--muted); letter-spacing:.15em; }
+    .goal-card {
+      max-width: 720px;
+      border: 1px solid var(--border);
+      padding: 3rem;
+      background: var(--card);
+      position: relative;
+    }
+
+    .goal-card::before {
+      content: '\201C';
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: .15;
+      position: absolute;
+      top: -1rem;
+      left: 2rem;
+      line-height: 1;
+    }
+
+    .goal-text {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .goal-sig {
+      margin-top: 1.5rem;
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .15em;
+    }
 
     /* ── CONTACT ── */
-    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:860px; }
-    .contact-desc { font-size:.84rem; color:var(--muted); line-height:2.1; }
-    .contact-links { display:flex; flex-direction:column; gap:.8rem; }
-    .clink { display:flex; align-items:center; gap:1rem; text-decoration:none; padding:1rem 1.4rem; border:1px solid var(--border); color:var(--text); font-size:.78rem; letter-spacing:.06em; transition:all .22s; background:var(--card); }
-    .clink:hover { border-color:var(--gold); color:var(--gold); transform:translateX(6px); }
-    .clink-icon { width:22px; text-align:center; font-style:normal; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 860px;
+    }
+
+    .contact-desc {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 2.1;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .clink {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      padding: 1rem 1.4rem;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: .78rem;
+      letter-spacing: .06em;
+      transition: all .22s;
+      background: var(--card);
+    }
+
+    .clink:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateX(6px);
+    }
+
+    .clink-icon {
+      width: 22px;
+      text-align: center;
+      font-style: normal;
+    }
 
     /* ── PROGRESS INDICATOR ── */
-    #progress { position:fixed; top:0; left:0; height:2px; background:var(--gold); z-index:9000; width:0; transition:width .1s linear; }
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--gold);
+      z-index: 9000;
+      width: 0;
+      transition: width .1s linear;
+    }
 
     /* ── FOOTER ── */
-    footer { text-align:center; padding:1.8rem; border-top:1px solid var(--border); font-size:.65rem; color:var(--muted); letter-spacing:.15em; }
+    footer {
+      text-align: center;
+      padding: 1.8rem;
+      border-top: 1px solid var(--border);
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: .15em;
+    }
 
     /* ── REVEAL ── */
-    .rev { opacity:0; transform:translateY(24px); transition:opacity .65s ease, transform .65s ease; }
-    .rev.in { opacity:1; transform:translateY(0); }
+    .rev {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .rev.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ── MOBILE ── */
     @media(max-width:800px) {
-      nav { padding:1.1rem 1.5rem; }
-      .home-wrap, .page { padding-left:1.5rem; padding-right:1.5rem; }
-      .about-grid, .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
-      .tl-item { grid-template-columns:1fr; gap:.2rem; }
-      .nav-links li a { padding:.4rem .55rem; font-size:.6rem; }
+      nav {
+        padding: 1.1rem 1.5rem;
+      }
+
+      .home-wrap,
+      .page {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: .2rem;
+      }
+
+      .nav-links li a {
+        padding: .4rem .55rem;
+        font-size: .6rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- Read progress bar -->
-<div id="progress"></div>
+  <!-- Read progress bar -->
+  <div id="progress"></div>
 
-<!-- Cursor -->
-<div id="cur"></div>
-<div id="cur-trail"></div>
+  <!-- Cursor -->
+  <div id="cur"></div>
+  <div id="cur-trail"></div>
 
-<!-- NAV -->
-<nav id="nav">
-  <a class="nav-sig" href="#home" data-route="home">Man-Chen Chao</a>
-  <ul class="nav-links">
-    <li><a href="#home"      data-route="home">Home</a></li>
-    <li><a href="#about"     data-route="about">About</a></li>
-    <li><a href="#education" data-route="education">Education</a></li>
-    <li><a href="#skills"    data-route="skills">Skills</a></li>
-    <li><a href="#goal"      data-route="goal">Goal</a></li>
-    <li><a href="#contact"   data-route="contact">Contact</a></li>
-  </ul>
-  <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
-    <span class="theme-icon">☽</span>
-    <span id="theme-label">Dark</span>
-  </button>
-</nav>
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-sig" href="#home" data-route="home">Man-Chen Chao</a>
+    <ul class="nav-links">
+      <li><a href="#home" data-route="home">Home</a></li>
+      <li><a href="#about" data-route="about">About</a></li>
+      <li><a href="#education" data-route="education">Education</a></li>
+      <li><a href="#skills" data-route="skills">Skills</a></li>
+      <li><a href="#goal" data-route="goal">Goal</a></li>
+      <li><a href="#contact" data-route="contact">Contact</a></li>
+    </ul>
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
+      <span class="theme-icon">☽</span>
+      <span id="theme-label">Dark</span>
+    </button>
+  </nav>
 
-<!-- SPA ROOT -->
-<div id="app">
+  <!-- SPA ROOT -->
+  <div id="app">
 
-  <!-- ══ HOME ══ -->
-  <div class="view" data-view="home">
-    <div class="home-wrap">
-      <div class="hero-reel"></div>
-      <div class="hero-content">
-        <p class="hero-pre" id="hero-pre">Hsinchu, Taiwan · EE Cyber · NTU</p>
-        <h1 class="hero-name">Man-Chen<br><em>Chao</em></h1>
-        <p class="hero-sub">
-          <strong>CS graduate from NYCU.</strong> Now diving into web security at <strong>NTU EE</strong>.<br>
-          Cinephile by night, engineer by day — chasing the edge between <strong>systems and security</strong>.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" data-route="contact" class="btn btn-gold">Say Hello</a>
-          <a href="https://github.com/Manjen1218" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    <!-- ══ HOME ══ -->
+    <div class="view" data-view="home">
+      <div class="home-wrap">
+        <div class="hero-reel"></div>
+        <div class="hero-content">
+          <p class="hero-pre" id="hero-pre">Hsinchu, Taiwan · EE Cyber · NTU</p>
+          <h1 class="hero-name">Man-Chen<br><em>Chao</em></h1>
+          <p class="hero-sub">
+            <strong>CS graduate from NYCU.</strong> Now diving into web security at <strong>NTU EE</strong>.<br>
+            Cinephile by night, engineer by day — chasing the edge between <strong>systems and security</strong>.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" data-route="contact" class="btn btn-gold">Say Hello</a>
+            <a href="https://github.com/Manjen1218" target="_blank" class="btn btn-outline">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="ticker-wrap">
+          <div class="ticker" id="ticker">
+            <span>Man-Chen Chao</span><span class="dot">✦</span>
+            <span>NTU EE Cyber</span><span class="dot">✦</span>
+            <span>NYCU CS Alumni</span><span class="dot">✦</span>
+            <span>Web Security</span><span class="dot">✦</span>
+            <span>Cinephile</span><span class="dot">✦</span>
+            <span>Hsinchu Taiwan</span><span class="dot">✦</span>
+            <span>Software RD @ ACCTON</span><span class="dot">✦</span>
+            <span>Man-Chen Chao</span><span class="dot">✦</span>
+            <span>NTU EE Cyber</span><span class="dot">✦</span>
+            <span>NYCU CS Alumni</span><span class="dot">✦</span>
+            <span>Web Security</span><span class="dot">✦</span>
+            <span>Cinephile</span><span class="dot">✦</span>
+            <span>Hsinchu Taiwan</span><span class="dot">✦</span>
+            <span>Software RD @ ACCTON</span><span class="dot">✦</span>
+          </div>
         </div>
       </div>
-      <div class="ticker-wrap">
-        <div class="ticker" id="ticker">
-          <span>Man-Chen Chao</span><span class="dot">✦</span>
-          <span>NTU EE Cyber</span><span class="dot">✦</span>
-          <span>NYCU CS Alumni</span><span class="dot">✦</span>
-          <span>Web Security</span><span class="dot">✦</span>
-          <span>Cinephile</span><span class="dot">✦</span>
-          <span>Hsinchu Taiwan</span><span class="dot">✦</span>
-          <span>Software RD @ ACCTON</span><span class="dot">✦</span>
-          <span>Man-Chen Chao</span><span class="dot">✦</span>
-          <span>NTU EE Cyber</span><span class="dot">✦</span>
-          <span>NYCU CS Alumni</span><span class="dot">✦</span>
-          <span>Web Security</span><span class="dot">✦</span>
-          <span>Cinephile</span><span class="dot">✦</span>
-          <span>Hsinchu Taiwan</span><span class="dot">✦</span>
-          <span>Software RD @ ACCTON</span><span class="dot">✦</span>
-        </div>
-      </div>
+      <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
     </div>
-    <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
-  </div>
 
-  <!-- ══ ABOUT ══ -->
-  <div class="view" data-view="about">
-    <div class="page">
-      <div class="sec-eyebrow rev">01 — About</div>
-      <h2 class="sec-title rev">A Few Frames<br><em>About Me</em></h2>
-      <div class="about-grid">
-        <div class="about-text rev">
-          <p>I'm <strong>Man-Chen Chao</strong>, originally from <strong>Hsinchu, Taiwan</strong>. I studied Computer Science at <strong>NYCU</strong> from 2020 to 2024, and I'm now pursuing a graduate degree in <strong>EE Cybersecurity at NTU</strong>.</p>
-          <p>Before grad school I worked as a <strong>Software R&amp;D engineer at ACCTON</strong>, building real production networking systems.</p>
-          <p>Outside of code, I'm a dedicated <strong>movie watcher</strong> — every film is a different world to explore. I think great cinema and great engineering share the same obsession: <em>attention to detail</em>.</p>
-          <p>Reach me at <a href="mailto:r14921a44@ntu.edu.tw">r14921a44@ntu.edu.tw</a>.</p>
-        </div>
-        <div class="film-strip rev">
-          <div class="film-holes" id="fh-top"></div>
-          <div class="film-item"><span class="film-label">Origin</span><span class="film-val">Hsinchu, Taiwan</span></div>
-          <div class="film-item"><span class="film-label">Current</span><span class="film-val">NTU, Taipei</span></div>
-          <div class="film-item"><span class="film-label">Status</span><span class="film-val">Grad Student</span></div>
-          <div class="film-item"><span class="film-label">Hobby</span><span class="film-val">Watch Movies 🎬</span></div>
-          <div class="film-item"><span class="film-label">Prev Role</span><span class="film-val">Software RD @ ACCTON</span></div>
-          <div class="film-item"><span class="film-label">Focus</span><span class="film-val">Web Security</span></div>
-          <div class="film-holes film-holes-bot" id="fh-bot"></div>
-        </div>
-      </div>
-    </div>
-    <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
-  </div>
-
-  <!-- ══ EDUCATION ══ -->
-  <div class="view" data-view="education">
-    <div class="page">
-      <div class="sec-eyebrow rev">02 — Journey</div>
-      <h2 class="sec-title rev">Education &amp;<br><em>Experience</em></h2>
-      <div class="timeline">
-        <div class="tl-item rev">
-          <div class="tl-year">2026<br>— now</div>
-          <div>
-            <div class="tl-name">National Taiwan University</div>
-            <div class="tl-sub">Graduate School · EE Department<br>Specialization: Cybersecurity</div>
-            <span class="tl-badge badge-current">● Current</span>
+    <!-- ══ ABOUT ══ -->
+    <div class="view" data-view="about">
+      <div class="page">
+        <div class="sec-eyebrow rev">01 — About</div>
+        <h2 class="sec-title rev">A Few Frames<br><em>About Me</em></h2>
+        <div class="about-grid">
+          <div class="about-text rev">
+            <p>I'm <strong>Man-Chen Chao</strong>, originally from <strong>Hsinchu, Taiwan</strong>. I studied Computer
+              Science at <strong>NYCU</strong> from 2020 to 2024, and I'm now pursuing a graduate degree in <strong>EE
+                Cybersecurity at NTU</strong>.</p>
+            <p>Before grad school I worked as a <strong>Software R&amp;D engineer at ACCTON</strong>, building real
+              production networking systems.</p>
+            <p>Outside of code, I'm a dedicated <strong>movie watcher</strong> — every film is a different world to
+              explore. I think great cinema and great engineering share the same obsession: <em>attention to
+                detail</em>.</p>
+            <p>Reach me at <a href="mailto:r14921a44@ntu.edu.tw">r14921a44@ntu.edu.tw</a>.</p>
           </div>
-        </div>
-        <div class="tl-item rev">
-          <div class="tl-year">Industry<br>Exp.</div>
-          <div>
-            <div class="tl-name">ACCTON Technology</div>
-            <div class="tl-sub">Software R&amp;D Engineer<br>Networking software · Systems engineering</div>
-            <span class="tl-badge badge-exp">● Experience</span>
-          </div>
-        </div>
-        <div class="tl-item rev">
-          <div class="tl-year">2020<br>— 2024</div>
-          <div>
-            <div class="tl-name">National Yang Ming Chiao Tung University</div>
-            <div class="tl-sub">B.S. · Computer Science<br>Algorithms · Systems · Software Engineering</div>
-            <span class="tl-badge badge-done">Graduated</span>
+          <div class="film-strip rev">
+            <div class="film-holes" id="fh-top"></div>
+            <div class="film-item"><span class="film-label">Origin</span><span class="film-val">Hsinchu, Taiwan</span>
+            </div>
+            <div class="film-item"><span class="film-label">Current</span><span class="film-val">NTU, Taipei</span>
+            </div>
+            <div class="film-item"><span class="film-label">Status</span><span class="film-val">Grad Student</span>
+            </div>
+            <div class="film-item"><span class="film-label">Hobby</span><span class="film-val">Watch Movies 🎬</span>
+            </div>
+            <div class="film-item"><span class="film-label">Prev Role</span><span class="film-val">Software RD @
+                ACCTON</span></div>
+            <div class="film-item"><span class="film-label">Focus</span><span class="film-val">Web Security</span></div>
+            <div class="film-holes film-holes-bot" id="fh-bot"></div>
           </div>
         </div>
       </div>
+      <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
     </div>
-    <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
-  </div>
 
-  <!-- ══ SKILLS ══ -->
-  <div class="view" data-view="skills">
-    <div class="page">
-      <div class="sec-eyebrow rev">03 — Toolkit</div>
-      <h2 class="sec-title rev">Skills &amp;<br><em>Tech Stack</em></h2>
-      <div class="skills-grid">
-        <div class="skill-block rev">
-          <div class="skill-block-title">// Languages</div>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">C</span><span class="chip">C++</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span>
+    <!-- ══ EDUCATION ══ -->
+    <div class="view" data-view="education">
+      <div class="page">
+        <div class="sec-eyebrow rev">02 — Journey</div>
+        <h2 class="sec-title rev">Education &amp;<br><em>Experience</em></h2>
+        <div class="timeline">
+          <div class="tl-item rev">
+            <div class="tl-year">2026<br>— now</div>
+            <div>
+              <div class="tl-name">National Taiwan University</div>
+              <div class="tl-sub">Graduate School · EE Department<br>Specialization: Cybersecurity</div>
+              <span class="tl-badge badge-current">● Current</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-block rev">
-          <div class="skill-block-title">// Frontend</div>
-          <div class="chips">
-            <span class="chip">React</span><span class="chip">Vite</span><span class="chip">HTML / CSS</span>
+          <div class="tl-item rev">
+            <div class="tl-year">Industry<br>Exp.</div>
+            <div>
+              <div class="tl-name">ACCTON Technology</div>
+              <div class="tl-sub">Software R&amp;D Engineer<br>Networking software · Systems engineering</div>
+              <span class="tl-badge badge-exp">● Experience</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-block rev">
-          <div class="skill-block-title">// Backend &amp; DB</div>
-          <div class="chips">
-            <span class="chip">MySQL</span><span class="chip">Node.js</span><span class="chip">REST APIs</span>
-          </div>
-        </div>
-        <div class="skill-block rev">
-          <div class="skill-block-title">// Systems &amp; Tools</div>
-          <div class="chips">
-            <span class="chip">Linux</span><span class="chip">Git</span><span class="chip">Docker</span><span class="chip">Bash</span>
-          </div>
-        </div>
-        <div class="skill-block rev">
-          <div class="skill-block-title">// Security (Learning)</div>
-          <div class="chips">
-            <span class="chip">Web Security</span><span class="chip">Cryptography</span><span class="chip">Network Sec</span><span class="chip">Reverse Eng.</span>
+          <div class="tl-item rev">
+            <div class="tl-year">2020<br>— 2024</div>
+            <div>
+              <div class="tl-name">National Yang Ming Chiao Tung University</div>
+              <div class="tl-sub">B.S. · Computer Science<br>Algorithms · Systems · Software Engineering</div>
+              <span class="tl-badge badge-done">Graduated</span>
+            </div>
           </div>
         </div>
       </div>
+      <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
     </div>
-    <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
-  </div>
 
-  <!-- ══ GOAL ══ -->
-  <div class="view" data-view="goal">
-    <div class="page">
-      <div class="sec-eyebrow rev">04 — Vision</div>
-      <h2 class="sec-title rev">My Goal</h2>
-      <div class="goal-card rev">
-        <p class="goal-text">"I want to deeply understand how the web breaks — and how to defend it. Through this course and my time at NTU, I aim to build real-world web security skills: from vulnerability research to secure system design. The goal isn't just to find bugs, but to <em>think like an attacker</em> and <em>build like a defender</em>."</p>
-        <p class="goal-sig">— Man-Chen Chao, NTU EE Cyber · 2026</p>
-      </div>
-    </div>
-    <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
-  </div>
-
-  <!-- ══ CONTACT ══ -->
-  <div class="view" data-view="contact">
-    <div class="page">
-      <div class="sec-eyebrow rev">05 — Contact</div>
-      <h2 class="sec-title rev">Get In Touch</h2>
-      <div class="contact-grid">
-        <p class="contact-desc rev">Whether it's about a project, a research opportunity, or just talking about a film — I'd love to hear from you.</p>
-        <div class="contact-links rev">
-          <a href="https://github.com/Manjen1218" target="_blank" class="clink">
-            <em class="clink-icon">⌥</em> github.com/Manjen1218
-          </a>
-          <a href="mailto:r14921a44@ntu.edu.tw" class="clink">
-            <em class="clink-icon">✉</em> r14921a44@ntu.edu.tw
-          </a>
+    <!-- ══ SKILLS ══ -->
+    <div class="view" data-view="skills">
+      <div class="page">
+        <div class="sec-eyebrow rev">03 — Toolkit</div>
+        <h2 class="sec-title rev">Skills &amp;<br><em>Tech Stack</em></h2>
+        <div class="skills-grid">
+          <div class="skill-block rev">
+            <div class="skill-block-title">// Languages</div>
+            <div class="chips">
+              <span class="chip">Python</span><span class="chip">C</span><span class="chip">C++</span><span
+                class="chip">JavaScript</span><span class="chip">TypeScript</span>
+            </div>
+          </div>
+          <div class="skill-block rev">
+            <div class="skill-block-title">// Frontend</div>
+            <div class="chips">
+              <span class="chip">React</span><span class="chip">Vite</span><span class="chip">HTML / CSS</span>
+            </div>
+          </div>
+          <div class="skill-block rev">
+            <div class="skill-block-title">// Backend &amp; DB</div>
+            <div class="chips">
+              <span class="chip">MySQL</span><span class="chip">Node.js</span><span class="chip">REST APIs</span>
+            </div>
+          </div>
+          <div class="skill-block rev">
+            <div class="skill-block-title">// Systems &amp; Tools</div>
+            <div class="chips">
+              <span class="chip">Linux</span><span class="chip">Git</span><span class="chip">Docker</span><span
+                class="chip">Bash</span>
+            </div>
+          </div>
+          <div class="skill-block rev">
+            <div class="skill-block-title">// Security (Learning)</div>
+            <div class="chips">
+              <span class="chip">Web Security</span><span class="chip">Cryptography</span><span class="chip">Network
+                Sec</span><span class="chip">Reverse Eng.</span>
+            </div>
+          </div>
         </div>
       </div>
+      <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
     </div>
-    <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
-  </div>
 
-</div><!-- #app -->
+    <!-- ══ GOAL ══ -->
+    <div class="view" data-view="goal">
+      <div class="page">
+        <div class="sec-eyebrow rev">04 — Vision</div>
+        <h2 class="sec-title rev">My Goal</h2>
+        <div class="goal-card rev">
+          <p class="goal-text">"I want to deeply understand how the web breaks — and how to defend it. Through this
+            course and my time at NTU, I aim to build real-world web security skills: from vulnerability research to
+            secure system design. The goal isn't just to find bugs, but to <em>think like an attacker</em> and <em>build
+              like a defender</em>."</p>
+          <p class="goal-sig">— Man-Chen Chao, NTU EE Cyber · 2026</p>
+        </div>
+      </div>
+      <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
+    </div>
 
-<script>
-'use strict';
+    <!-- ══ CONTACT ══ -->
+    <div class="view" data-view="contact">
+      <div class="page">
+        <div class="sec-eyebrow rev">05 — Contact</div>
+        <h2 class="sec-title rev">Get In Touch</h2>
+        <div class="contact-grid">
+          <p class="contact-desc rev">Whether it's about a project, a research opportunity, or just talking about a film
+            — I'd love to hear from you.</p>
+          <div class="contact-links rev">
+            <a href="https://github.com/Manjen1218" target="_blank" class="clink">
+              <em class="clink-icon">⌥</em> github.com/Manjen1218
+            </a>
+            <a href="mailto:r14921a44@ntu.edu.tw" class="clink">
+              <em class="clink-icon">✉</em> r14921a44@ntu.edu.tw
+            </a>
+          </div>
+        </div>
+      </div>
+      <footer>© 2026 Man-Chen Chao · Hsinchu × Taipei · All frames intentional.</footer>
+    </div>
 
-/* ═══════════════════════════════════════════
-   ROUTER
-═══════════════════════════════════════════ */
-const ROUTES = ['home','about','education','skills','goal','contact'];
-let currentRoute = null;
-let transitioning = false;
+  </div><!-- #app -->
 
-function getRoute() {
-  const hash = location.hash.replace('#','') || 'home';
-  return ROUTES.includes(hash) ? hash : 'home';
-}
+  <script>
+    'use strict';
 
-async function navigate(to, push = true) {
-  if (to === currentRoute || transitioning) return;
-  transitioning = true;
+    /* ═══════════════════════════════════════════
+       ROUTER
+    ═══════════════════════════════════════════ */
+    const ROUTES = ['home', 'about', 'education', 'skills', 'goal', 'contact'];
+    let currentRoute = null;
+    let transitioning = false;
 
-  const fromEl = currentRoute ? document.querySelector(`.view[data-view="${currentRoute}"]`) : null;
-  const toEl   = document.querySelector(`.view[data-view="${to}"]`);
-
-  // Update URL
-  if (push) history.pushState({ route: to }, '', `#${to}`);
-
-  // Highlight nav
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.dataset.route === to);
-  });
-
-  // Outgoing
-  if (fromEl) {
-    fromEl.classList.add('leave');
-    await delay(200);
-    fromEl.classList.remove('active', 'leave');
-  }
-
-  // Incoming
-  currentRoute = to;
-  toEl.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'instant' });
-
-  // Trigger reveals
-  requestAnimationFrame(() => {
-    toEl.querySelectorAll('.rev').forEach((el, i) => {
-      el.classList.remove('in');
-      setTimeout(() => el.classList.add('in'), i * 80 + 60);
-    });
-  });
-
-  await delay(460);
-  transitioning = false;
-
-  // Run view-specific init
-  onViewEnter(to);
-}
-
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-// Intercept all data-route links
-document.addEventListener('click', e => {
-  const a = e.target.closest('[data-route]');
-  if (!a) return;
-  e.preventDefault();
-  navigate(a.dataset.route);
-});
-
-// Browser back/forward
-window.addEventListener('popstate', () => navigate(getRoute(), false));
-
-/* ═══════════════════════════════════════════
-   PER-VIEW INIT
-═══════════════════════════════════════════ */
-const typingDone = new Set();
-
-function onViewEnter(view) {
-  if (view === 'home') {
-    // Typing effect (once)
-    const pre = document.getElementById('hero-pre');
-    if (!typingDone.has('hero-pre')) {
-      typingDone.add('hero-pre');
-      const txt = pre.textContent;
-      pre.textContent = '';
-      let i = 0;
-      const t = setInterval(() => {
-        pre.textContent += txt[i++];
-        if (i >= txt.length) clearInterval(t);
-      }, 42);
+    function getRoute() {
+      const hash = location.hash.replace('#', '') || 'home';
+      return ROUTES.includes(hash) ? hash : 'home';
     }
-    // Ticker
-    const ticker = document.getElementById('ticker');
-    ticker.parentElement.onmouseenter = () => ticker.style.animationPlayState = 'paused';
-    ticker.parentElement.onmouseleave = () => ticker.style.animationPlayState = 'running';
-  }
 
-  if (view === 'about') buildFilmHoles();
+    async function navigate(to, push = true) {
+      if (to === currentRoute || transitioning) return;
+      transitioning = true;
 
-  if (view === 'skills') {
-    document.querySelectorAll('#app .chip').forEach(c => {
-      c.onclick = function() {
-        this.classList.add('flash');
-        setTimeout(() => this.classList.remove('flash'), 650);
-      };
-    });
-  }
-}
+      const fromEl = currentRoute ? document.querySelector(`.view[data-view="${currentRoute}"]`) : null;
+      const toEl = document.querySelector(`.view[data-view="${to}"]`);
 
-function buildFilmHoles() {
-  ['fh-top','fh-bot'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el || el.children.length) return;
-    for (let i = 0; i < 10; i++) {
-      const h = document.createElement('div');
-      h.className = 'film-hole';
-      el.appendChild(h);
+      // Update URL
+      if (push) history.pushState({ route: to }, '', `#${to}`);
+
+      // Highlight nav
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.dataset.route === to);
+      });
+
+      // Outgoing
+      if (fromEl) {
+        fromEl.classList.add('leave');
+        await delay(200);
+        fromEl.classList.remove('active', 'leave');
+      }
+
+      // Incoming
+      currentRoute = to;
+      toEl.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Trigger reveals
+      requestAnimationFrame(() => {
+        toEl.querySelectorAll('.rev').forEach((el, i) => {
+          el.classList.remove('in');
+          setTimeout(() => el.classList.add('in'), i * 80 + 60);
+        });
+      });
+
+      await delay(460);
+      transitioning = false;
+
+      // Run view-specific init
+      onViewEnter(to);
     }
-  });
-}
 
-/* ═══════════════════════════════════════════
-   THEME TOGGLE
-═══════════════════════════════════════════ */
-const html       = document.documentElement;
-const themeBtn   = document.getElementById('theme-btn');
-const themeLabel = document.getElementById('theme-label');
-const themeIcon  = themeBtn.querySelector('.theme-icon');
+    function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-function applyTheme(theme) {
-  html.dataset.theme = theme;
-  localStorage.setItem('theme', theme);
-  if (theme === 'dark') {
-    themeIcon.textContent = '☽';
-    themeLabel.textContent = 'Dark';
-  } else {
-    themeIcon.textContent = '☀';
-    themeLabel.textContent = 'Light';
-  }
-}
+    // Intercept all data-route links
+    document.addEventListener('click', e => {
+      const a = e.target.closest('[data-route]');
+      if (!a) return;
+      e.preventDefault();
+      navigate(a.dataset.route);
+    });
 
-themeBtn.addEventListener('click', () => {
-  applyTheme(html.dataset.theme === 'dark' ? 'light' : 'dark');
-});
+    // Browser back/forward
+    window.addEventListener('popstate', () => navigate(getRoute(), false));
 
-// Restore saved preference
-const saved = localStorage.getItem('theme');
-if (saved) applyTheme(saved);
-else if (window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme('light');
+    /* ═══════════════════════════════════════════
+       PER-VIEW INIT
+    ═══════════════════════════════════════════ */
+    const typingDone = new Set();
 
-/* ═══════════════════════════════════════════
-   CURSOR
-═══════════════════════════════════════════ */
-const cur   = document.getElementById('cur');
-const trail = document.getElementById('cur-trail');
-let mx = 0, my = 0;
+    function onViewEnter(view) {
+      if (view === 'home') {
+        // Typing effect (once)
+        const pre = document.getElementById('hero-pre');
+        if (!typingDone.has('hero-pre')) {
+          typingDone.add('hero-pre');
+          const txt = pre.textContent;
+          pre.textContent = '';
+          let i = 0;
+          const t = setInterval(() => {
+            pre.textContent += txt[i++];
+            if (i >= txt.length) clearInterval(t);
+          }, 42);
+        }
+        // Ticker
+        const ticker = document.getElementById('ticker');
+        ticker.parentElement.onmouseenter = () => ticker.style.animationPlayState = 'paused';
+        ticker.parentElement.onmouseleave = () => ticker.style.animationPlayState = 'running';
+      }
 
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px';
-  cur.style.top  = my + 'px';
-  trail.style.left = mx + 'px';
-  trail.style.top  = my + 'px';
-});
+      if (view === 'about') buildFilmHoles();
 
-document.addEventListener('mouseover', e => {
-  if (e.target.closest('a, button, .chip, .tl-item, .clink')) {
-    trail.style.transform = 'translate(-50%,-50%) scale(2.2)';
-    trail.style.opacity   = '.7';
-  } else {
-    trail.style.transform = 'translate(-50%,-50%) scale(1)';
-    trail.style.opacity   = '.4';
-  }
-});
+      if (view === 'skills') {
+        document.querySelectorAll('#app .chip').forEach(c => {
+          c.onclick = function () {
+            this.classList.add('flash');
+            setTimeout(() => this.classList.remove('flash'), 650);
+          };
+        });
+      }
+    }
 
-/* ═══════════════════════════════════════════
-   NAV SCROLL STYLE
-═══════════════════════════════════════════ */
-const navEl = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  navEl.classList.toggle('scrolled', window.scrollY > 40);
-});
+    function buildFilmHoles() {
+      ['fh-top', 'fh-bot'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el || el.children.length) return;
+        for (let i = 0; i < 10; i++) {
+          const h = document.createElement('div');
+          h.className = 'film-hole';
+          el.appendChild(h);
+        }
+      });
+    }
 
-/* ═══════════════════════════════════════════
-   READ PROGRESS BAR
-═══════════════════════════════════════════ */
-const progressBar = document.getElementById('progress');
-window.addEventListener('scroll', () => {
-  const max = document.body.scrollHeight - window.innerHeight;
-  progressBar.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0';
-});
+    /* ═══════════════════════════════════════════
+       THEME TOGGLE
+    ═══════════════════════════════════════════ */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('theme-btn');
+    const themeLabel = document.getElementById('theme-label');
+    const themeIcon = themeBtn.querySelector('.theme-icon');
 
-/* ═══════════════════════════════════════════
-   BOOT
-═══════════════════════════════════════════ */
-navigate(getRoute(), false);
-</script>
+    function applyTheme(theme) {
+      html.dataset.theme = theme;
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        themeIcon.textContent = '☽';
+        themeLabel.textContent = 'Dark';
+      } else {
+        themeIcon.textContent = '☀';
+        themeLabel.textContent = 'Light';
+      }
+    }
+
+    themeBtn.addEventListener('click', () => {
+      applyTheme(html.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+
+    // Restore saved preference
+    const saved = localStorage.getItem('theme');
+    if (saved) applyTheme(saved);
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) applyTheme('light');
+
+    /* ═══════════════════════════════════════════
+       CURSOR
+    ═══════════════════════════════════════════ */
+    const cur = document.getElementById('cur');
+    const trail = document.getElementById('cur-trail');
+    let mx = 0, my = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cur.style.left = mx + 'px';
+      cur.style.top = my + 'px';
+      trail.style.left = mx + 'px';
+      trail.style.top = my + 'px';
+    });
+
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest('a, button, .chip, .tl-item, .clink')) {
+        trail.style.transform = 'translate(-50%,-50%) scale(2.2)';
+        trail.style.opacity = '.7';
+      } else {
+        trail.style.transform = 'translate(-50%,-50%) scale(1)';
+        trail.style.opacity = '.4';
+      }
+    });
+
+    /* ═══════════════════════════════════════════
+       NAV SCROLL STYLE
+    ═══════════════════════════════════════════ */
+    const navEl = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      navEl.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    /* ═══════════════════════════════════════════
+       READ PROGRESS BAR
+    ═══════════════════════════════════════════ */
+    const progressBar = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0';
+    });
+
+    /* ═══════════════════════════════════════════
+       BOOT
+    ═══════════════════════════════════════════ */
+    navigate(getRoute(), false);
+  </script>
 </body>
+
 </html>

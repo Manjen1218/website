@@ -1,0 +1,8 @@
+#progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--gold);
+  z-index: 9500;
+  transition: width 0.08s linear;
+}

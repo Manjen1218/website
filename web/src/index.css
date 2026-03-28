@@ -1,0 +1,148 @@
+/* ── THEME TOKENS ── */
+:root[data-theme="dark"] {
+  --bg:       #080808;
+  --surface:  #0f0f0f;
+  --card:     #141414;
+  --border:   #222;
+  --text:     #d8d0c4;
+  --muted:    #5a5248;
+  --gold:     #c9a84c;
+  --gold-dim: rgba(201,168,76,0.15);
+  --nav-bg:   rgba(8,8,8,0.92);
+  --scanline: rgba(0,0,0,0.07);
+  --grain-op: 0.55;
+}
+:root[data-theme="light"] {
+  --bg:       #f5f0e8;
+  --surface:  #ede8dc;
+  --card:     #e8e2d4;
+  --border:   #cfc8b8;
+  --text:     #1a1714;
+  --muted:    #7a6e5e;
+  --gold:     #a07828;
+  --gold-dim: rgba(160,120,40,0.12);
+  --nav-bg:   rgba(245,240,232,0.92);
+  --scanline: rgba(0,0,0,0.03);
+  --grain-op: 0.25;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', 'Courier New', monospace;
+  overflow-x: hidden;
+  cursor: none;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* grain overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9000;
+  opacity: var(--grain-op);
+  transition: opacity 0.4s;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* ── SHARED TYPOGRAPHY ── */
+.serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+.sec-eyebrow {
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.sec-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+}
+.sec-title em { font-style: italic; color: var(--gold); }
+
+/* ── SHARED BUTTONS ── */
+.btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: none;
+  display: inline-block;
+}
+.btn-gold  { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+.btn-gold:hover { background: transparent; color: var(--gold); }
+.btn-outline { color: var(--text); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── SHARED PAGE ── */
+.page {
+  min-height: calc(100vh - 64px);
+  padding: 5rem 4rem;
+}
+
+/* ── READ PROGRESS ── */
+#progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; background: var(--gold);
+  z-index: 9500; width: 0;
+  transition: width 0.08s linear;
+}
+
+/* ── VIEW TRANSITIONS ── */
+.view-enter {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.view-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+.view-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.view-exit-active {
+  opacity: 0;
+  transform: translateY(-14px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* ── SCROLL REVEAL ── */
+.rev {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.rev.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center;
+  padding: 1.8rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 800px) {
+  .page { padding: 4rem 1.5rem; }
+}
