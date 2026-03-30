@@ -22,7 +22,7 @@ const SKILL_GROUPS = [
   },
   {
     title: '// Security (Learning)',
-    chips: ['Web Security', 'Cryptography', 'Network Sec', 'Reverse Eng.'],
+    chips: ['Web Security', 'Cryptography', 'Network Security'],
   },
 ]
 

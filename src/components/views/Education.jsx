@@ -4,25 +4,32 @@ import './Education.css'
 
 const TIMELINE = [
   {
-    years:  '2026 — now',
-    name:   'National Taiwan University',
-    sub:    'Graduate School · EE Department\nSpecialization: Cybersecurity',
-    badge:  'current',
-    label:  '● Current',
+    years: '2026 — now',
+    name: 'National Taiwan University',
+    sub: 'Graduate School · EE Department\nSpecialization: Cybersecurity',
+    badge: 'current',
+    label: '● Current',
   },
   {
-    years:  'Industry Exp.',
-    name:   'ACCTON Technology',
-    sub:    'Software R&D Engineer\nNetworking software · Systems engineering',
-    badge:  'exp',
-    label:  '● Experience',
+    years: 'Industry Exp.',
+    name: 'ACCTON Technology',
+    sub: 'Software R&D Engineer\nNetworking Software · Full Stack Developer · Software / Firmware Engineer',
+    badge: 'exp',
+    label: '● Experience',
   },
   {
-    years:  '2020 — 2024',
-    name:   'National Yang Ming Chiao Tung University',
-    sub:    'B.S. · Computer Science\nAlgorithms · Systems · Software Engineering',
-    badge:  'done',
-    label:  'Graduated',
+    years: 'Exchange Program',
+    name: 'Fudan University',
+    sub: 'B.S. · Computer Science and Technology\nExchange Student',
+    badge: 'done',
+    label: 'Graduated',
+  },
+  {
+    years: '2020 — 2024',
+    name: 'National Yang Ming Chiao Tung University',
+    sub: 'B.S. · Computer Science\nAlgorithms · Systems · Software Engineering',
+    badge: 'done',
+    label: 'Graduated',
   },
 ]
 

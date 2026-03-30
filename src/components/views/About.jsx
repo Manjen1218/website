@@ -3,12 +3,12 @@ import Footer from '../Footer.jsx'
 import './About.css'
 
 const FACTS = [
-  { label: 'Origin',    value: 'Hsinchu, Taiwan' },
-  { label: 'Current',   value: 'NTU, Taipei' },
-  { label: 'Status',    value: 'Grad Student' },
-  { label: 'Hobby',     value: 'Watch Movies 🎬' },
+  { label: 'Origin', value: 'Hsinchu, Taiwan' },
+  { label: 'Current', value: 'NTU, Taipei' },
+  { label: 'Status', value: 'Grad Student' },
+  { label: 'Hobby', value: 'Watch Movies, Listening Musics' },
   { label: 'Prev Role', value: 'Software RD @ ACCTON' },
-  { label: 'Focus',     value: 'Web Security' },
+  { label: 'Focus', value: 'Web Security, SemCom, LLM' },
 ]
 
 function FilmStrip() {
