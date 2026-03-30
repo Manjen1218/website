@@ -55,7 +55,7 @@
   cursor: pointer;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
   position: relative;
@@ -63,6 +63,7 @@
 
 .nav-link:hover {
   color: var(--text);
+  text-shadow: 0 0 20px var(--gold);
 }
 
 .nav-link.active {
@@ -74,14 +75,14 @@
   content: '';
   position: absolute;
   left: 50%;
-  bottom: 4px;
+  bottom: 2px;
   width: 70%;
   height: 1.5px;
   background: var(--gold);
 
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
 .nav-link:hover::after {
