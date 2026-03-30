@@ -10,7 +10,7 @@ const SKILL_GROUPS = [
   },
   {
     title: '// Frontend',
-    chips: ['React', 'Vite', 'HTML / CSS'],
+    chips: ['React', 'Vite', 'HTML / CSS', 'PHP'],
   },
   {
     title: '// Backend & DB',
