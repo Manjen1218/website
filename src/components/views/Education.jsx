@@ -13,7 +13,7 @@ const TIMELINE = [
   {
     years: 'Industry Exp.',
     name: 'ACCTON Technology',
-    sub: 'Software R&D Engineer\nNetworking Software · Full Stack Developer · Software / Firmware Engineer',
+    sub: 'Software R&D Engineer\nNetworking Software · Frontend & Backend Developer · Software / Firmware Engineer\n- Full-stack pipeline to parse and store over 7TB logs in MariaDB, enabling monitoring via Grafana.\n- Developed SQL stored procedures to support dynamic, user-driven queries and interactive visualizations from the Grafana Dashboard',
     badge: 'exp',
     label: '● Experience',
   },

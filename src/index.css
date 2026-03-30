@@ -20,11 +20,12 @@
   --border: #c4bcf0;
   --text: #1a1730;
   --muted: #6b6490;
-  --gold: #aa7cfadd;
+  --gold: #b37ff8dd;
   --gold-dim: rgba(124, 58, 237, 0.12);
-  --nav-bg: rgba(243, 240, 255, 0.92);
+  --nav-bg: rgb(233, 220, 247);
   --scanline: rgba(0, 0, 0, 0.03);
   --grain-op: 0.25;
+  --pink:
 }
 
 /* ── RESET ── */

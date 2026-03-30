@@ -49,8 +49,7 @@ export default function Home({ navigate }) {
           </h1>
 
           <p className="hero-sub">
-            <strong>CS graduate from NYCU.</strong> Now diving into{' '}
-            <strong>NTU EE Cyber Security</strong>.<br />
+            <strong>EE Cyber Security</strong> student at <strong>NTU</strong> with undergraduate degrees at <strong>NYCU majored in Computer Science</strong>.<br />
             Cinephile by night, engineer by day — chasing the edge between{' '}
             <strong>systems and security</strong>.
           </p>

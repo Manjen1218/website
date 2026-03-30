@@ -16,18 +16,30 @@
   position: relative;
   overflow: hidden;
   cursor: default;
+  border-radius: 5px;
 }
+
 .tl-item::before {
   content: '';
-  position: absolute; left: 0; top: 0; bottom: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 2px;
   background: var(--gold);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.35s;
 }
-.tl-item:hover { border-color: var(--gold); transform: translateX(6px); }
-.tl-item:hover::before { transform: scaleY(1); }
+
+.tl-item:hover {
+  border-color: var(--gold);
+  transform: translateX(6px);
+}
+
+.tl-item:hover::before {
+  transform: scaleY(1);
+}
 
 .tl-year {
   font-size: 0.7rem;
@@ -57,17 +69,41 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid;
+  border-radius: 2px;
 }
-.badge-current {
-  border-color: var(--gold);
-  color: var(--gold);
-  animation: pulse 2.5s infinite;
-}
-.badge-exp { border-color: #3a6e50; color: #5aab7a; }
-.badge-done { border-color: var(--border); color: var(--muted); }
 
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.badge-current {
+  border-color: rgb(226, 122, 228);
+  color: rgb(202, 89, 176);
+  animation: pulse 2s infinite;
+}
+
+.badge-exp {
+  border-color: #3a6e50;
+  color: #5aab7a;
+
+}
+
+.badge-done {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0.4
+  }
+}
 
 @media (max-width: 800px) {
-  .tl-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .tl-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
 }

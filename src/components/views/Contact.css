@@ -31,7 +31,9 @@
   letter-spacing: 0.06em;
   transition: all 0.22s;
   background: var(--card);
+  border-radius: 4px;
 }
+
 .clink:hover {
   border-color: var(--gold);
   color: var(--gold);
@@ -46,5 +48,8 @@
 }
 
 @media (max-width: 800px) {
-  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }

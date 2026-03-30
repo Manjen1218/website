@@ -9,14 +9,16 @@
   padding: 1.6rem;
   background: var(--card);
   transition: border-color 0.2s, background 0.4s;
+  border-radius: 5px;
 }
 
 .skill-block:hover {
   border-color: var(--gold);
+  transform: scale(1.02);
 }
 
 .skill-block-title {
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   color: var(--gold);
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -31,7 +33,7 @@
 
 .chip {
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   padding: 0.3rem 0.8rem;
   border: 1px solid var(--border);
   color: var(--muted);
@@ -39,6 +41,7 @@
   transition: all 0.18s;
   cursor: default;
   user-select: none;
+  border-radius: 2px;
 }
 
 .chip:hover {
