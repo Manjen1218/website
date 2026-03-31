@@ -1,6 +1,7 @@
 import { useReveal } from '../../hooks/useReveal.js'
 import Footer from '../Footer.jsx'
 import './Contact.css'
+import { FaDiscord } from "react-icons/fa";
 
 const LINKS = [
   {
@@ -14,6 +15,12 @@ const LINKS = [
     label: 'r14921a44@ntu.edu.tw',
     href: 'mailto:r14921a44@ntu.edu.tw',
     external: false,
+  },
+  {
+    icon: <FaDiscord />,
+    label: 'discord/zmz1218',
+    href: 'https://discord.com/users/zmz1218',
+    external: true,
   },
 ]
 

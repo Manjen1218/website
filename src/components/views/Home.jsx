@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import Footer from '../Footer.jsx'
 import './Home.css'
+import avatar from "../../assets/IMG_6805.jpg";
+
+<img src={avatar} className="hero-avatar" />
 
 const TICKER_ITEMS = [
   'Man-Chen Chao', 'NTU EE Cyber', 'NYCU CS Alumni',
@@ -67,6 +70,7 @@ export default function Home({ navigate }) {
               GitHub ↗
             </a>
           </div>
+          <img src={avatar} className="hero-avatar" />
         </div>
 
         <div
